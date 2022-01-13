@@ -3,13 +3,6 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import morgan from "morgan";
 import ArticlesRoute from "./routes/ArticlesRoute";
-import AuthRoute from "./routes/AuthRoute";
-import bcrypt from "bcryptjs";
-
-bcrypt.hash('somePassowrd', 12).then(hash => {
-    console.log(hash);
-});
-
 
 require('dotenv').config();
 
@@ -24,9 +17,7 @@ app.get("/", (req, res) => {
     })
 })
 
-
 app.use("/api/v1/articles", ArticlesRoute);
-app.use("/api/v1/auth", AuthRoute);
 
 const PORT = process.env.PORT || 5000;
 

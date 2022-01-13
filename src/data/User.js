@@ -1,4 +1,9 @@
-export default {
-  email: "blandine60@gmail.com",
-  password: "Test@123"
-}
+const User = [
+ {
+   name: "Blondie",
+   email: "bla@gmail.com",
+   password:"bla1@3"
+ } 
+]
+
+export default User
