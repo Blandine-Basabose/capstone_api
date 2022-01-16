@@ -4,11 +4,11 @@ import cors from "cors";
 import morgan from "morgan";
 import ArticlesRoute from "./routes/ArticlesRoute";
 import AuthRoute from "./routes/AuthRoute";
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
 
-bcrypt.hash('somePassowrd', 12).then(hash => {
-    console.log(hash);
-});
+// bcrypt.hash('somePassowrd', 12).then(hash => {
+//     console.log(hash);
+// });
 
 
 require('dotenv').config();
@@ -20,7 +20,7 @@ app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
     res.json({
-        message: "Learn Node.js with friends"
+        message: "Learn Node.js"
     })
 })
 

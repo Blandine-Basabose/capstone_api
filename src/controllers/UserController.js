@@ -19,10 +19,11 @@ const signUp = (req, res) => {
   const usr = User.find((u) => u.name === name && u.email === email && u.password === password);
   if (usr) {
     return res.status(409).json({
-      error: "User exixts",
+      error: "User exists",
     });
   }
   const user = {
+    id: User.length +1,
     name,
     email,
     password,
@@ -46,7 +47,7 @@ const signIn = (req, res) => {
   const usr = User.find((u) => u.email === email && u.password === password);
   if (!usr) {
     return res.status(401).json({
-      error: "invalid email or password",
+      error: "Email and password are incorect",
     });
   }
   return res.status(200).json({

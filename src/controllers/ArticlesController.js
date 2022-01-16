@@ -12,7 +12,7 @@ const getArticleById = (req, res) => {
   const article = articles.find((article) => article.id === Number(id));
   if (!article) {
     return res.status(404).json({
-      message: "Article not found",
+      error: "Article not found",
     });
   }
   res.json({
@@ -38,32 +38,50 @@ const addArticle = (req, res) => {
 //Update Article
 const updateArticleById = (req, res) => {
   const { id } = req.params;
-  const article = articles.findIndex((article) => article.id === Number(id));
   const { title, image, description } = req.body;
-  const updatedArticle = articles.splice(article, 1, {
-    id,
-    title,
-    image,
-    description
-  });
-  res.json({
-    message: "Article updated successfully",
-    updatedArticle,
-  });
+  const article = articles.find((article) => article.id === Number(id));
+  
+  if (!article) {
+    return res.status(404).json({
+      error: "Article not found",
+    });
+  }else{
+    const articleIndex = articles.findIndex((article) => article.id === Number(id));
+    articles.splice(articleIndex, 1, {
+      id,
+      title,
+      image,
+      description
+    });
+    console.log(articles[articleIndex]); 
+    return res.json({
+      message: "Article updated successfully",
+      article:articles[articleIndex]
+    });
+  }
+ 
 };
 //Delete Article
 
 const deleteArticleById = (req, res) => {
   const { id } = req.params;
+  const article = articles.find((article) => article.id === Number(id));
 
-  const article = articles.findIndex((article) => article.id === Number(id));
-
-  const deletedArticle = articles.splice(article, 1);
-  console.log(deletedArticle);
+  if (!article) {
+    return res.status(404).json({
+      error: "Article not found",
+    });
+    
+  }else{
+    const articleIndex = articles.findIndex((article) => article.id === Number(id));
+    const deletedArticle = articles.splice(articleIndex, 1);
+ 
   res.json({
     message: "Article deleted successfully",
     deletedArticle,
   });
+  }
+  
 };
 
 export default {
